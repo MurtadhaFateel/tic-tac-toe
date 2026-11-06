@@ -1,23 +1,10 @@
-/*-------------------------------- Constants --------------------------------*/
-
-
-
-/*---------------------------- Variables (state) ----------------------------*/
-
-
-
-/*------------------------ Cached Element References ------------------------*/
-
-
-
-/*-------------------------------- Functions --------------------------------*/
-
-
-
-/*----------------------------- Event Listeners -----------------------------*/
-
+/*------------ Cached elements /*------------*/
 //Cahcing board square elements using class name 
 const boardSqrElements = document.querySelectorAll('.sqr')
+//Cache player message turn using ID name 
+const playerTurnMessage = document.querySelector('#message')
+
+/*------------ Variables ------------*/
 //Board Array of 9 empty strings
 const board = ['', '', '', '', '', '', '', '', '']
 //Player turn starts as X
@@ -26,10 +13,8 @@ let currentPlayerTurn = 'X'
 let winner = false 
 //Tie condition starts a false until there is a tie
 let tie = false 
-//Cache player message turn using ID name 
-const playerTurnMessage = document.querySelector('#message')
 
-/*------ Functions ------*/
+/*------------ Functions ------------*/
 ///Function - Loop through board array and update UI to match data
 const boardRender = () => {
     board.forEach((mark, index) => {
@@ -89,7 +74,7 @@ const checkWinner = () => {
     }
 }
 
-///Function - Check for a tie 
+///Function - Check for a tie where board postion is not empty
 const checkTie = () => {
     if(board[0] !== '' && board[1] !== '' && board[2] !== '' && board[3] !== '' && board[4] !== '' && board[5] !== '' && board[6] !== '' && board[7] !== '' && board[8] !== '') {
         playerTurnMessage.textContent = 'Tie Game!'
@@ -101,14 +86,14 @@ const checkTie = () => {
 //Display the initial current player turn (X turn) by updating the message 
 playerTurnMessage.textContent = `It's ${currentPlayerTurn}'s turn`
 
-/*------ Event Listeners ------*/
+/*------------ Event Listeners ------------*/
 ///Event Listener - Handle players clicks, update the board with X/O, track player turn/switch turns
 //Loop through the board square elements and current index number
 boardSqrElements.forEach((sqrElement, index) => {
 
     //Listen for click action on current square element
     sqrElement.addEventListener('click', () => {
-        //Invalid move - check if selected position already contains a mark X/O
+        //Invalid move - check if selected position already contains a mark X/O or game is win/tie
         if(board[index] !== '' || winner === true || tie === true) {
             return
         }
