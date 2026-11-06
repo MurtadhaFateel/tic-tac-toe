@@ -37,59 +37,90 @@ const boardRender = () => {
     })
 }
 
-///Function - 
+///Function - Check for Winner based on board position combinations 
 const checkWinner = () => {
     //Check Top Row 
     if(board[0] !== '' && board[0] === board[1] && board[1] === board[2]) {
-            
+        playerTurnMessage.textContent = `${board[0]} wins!`
+        winner = true
+        return
     }
     //Check Middle row
     if(board[3] !== '' && board[3] === board[4] && board[4] === board[5]) {
-            
+        playerTurnMessage.textContent = `${board[3]} wins!` 
+        winner = true
+        return
     }
     //Check Bottom row
     if(board[6] !== '' && board[6] === board[7] && board[7] === board[8]) {
-        
+        playerTurnMessage.textContent = `${board[6]} wins!` 
+        winner = true
+        return  
     }
     //Check Left column
     if(board[0] !== '' && board[0] === board[3] && board[3] === board[6]) {
-        
+        playerTurnMessage.textContent = `${board[0]} wins!` 
+        winner = true
+        return 
     }
     //Check Middle column
     if(board[1] !== '' && board[1] === board[4] && board[4] === board[7]) {
-        
+        playerTurnMessage.textContent = `${board[1]} wins!`
+        winner = true
+        return
     }
     //Check Right column
     if(board[2] !== '' && board[2] === board[5] && board[5] === board[8]) {
-        
+        playerTurnMessage.textContent = `${board[2]} wins!`
+        winner = true
+        return
     }
     //Check Top-left to bottom-right diagonal
     if(board[0] !== '' && board[0] === board[4] && board[4] === board[8]) {
-        
+        playerTurnMessage.textContent = `${board[0]} wins!`
+        winner = true
+        return
     }
     //Check Top-right to bottom-left diagonal
     if(board[2] !== '' && board[2] === board[4] && board[4] === board[6]) {
-        
+        playerTurnMessage.textContent = `${board[2]} wins!`
+        winner = true
+        return
     }
 }
+
+///Function - Check for a tie 
+const checkTie = () => {
+    if(board[0] !== '' && board[1] !== '' && board[2] !== '' && board[3] !== '' && board[4] !== '' && board[5] !== '' && board[6] !== '' && board[7] !== '' && board[8] !== '') {
+        playerTurnMessage.textContent = 'Tie Game!'
+        tie = true
+        return
+    }
+}
+
+//Display the initial current player turn (X turn) by updating the message 
+playerTurnMessage.textContent = `It's ${currentPlayerTurn}'s turn`
 
 /*------ Event Listeners ------*/
 ///Event Listener - Handle players clicks, update the board with X/O, track player turn/switch turns
 //Loop through the board square elements and current index number
 boardSqrElements.forEach((sqrElement, index) => {
-    //Display current player turn by updating the message
-    playerTurnMessage.textContent = `It's ${currentPlayerTurn}'s turn`
 
     //Listen for click action on current square element
     sqrElement.addEventListener('click', () => {
         //Invalid move - check if selected position already contains a mark X/O
-        if(board[index] !== '') {
+        if(board[index] !== '' || winner === true || tie === true) {
             return
         }
 
         //Update the board array with the current player turn upon a click (X/O)
         board[index] = currentPlayerTurn
+        
+        //Check for a Winner function 
+        checkWinner()
 
+        //Check for a tie function 
+        checkTie()
         //If statment to check current player turn and update the boardSqrElements with value X or O
         // if (currentPlayerTurn==='X') {
         //     sqrElement.append('X')
@@ -97,21 +128,24 @@ boardSqrElements.forEach((sqrElement, index) => {
         //     sqrElement.append('O')
         // }
 
-        //Switch Player turn (X always goes first from let currentPlayerTurn = 'X') check if current turn is X switch it to O and vice versa + update player turn message
-        if(currentPlayerTurn==='X') {
+        //Switch Player turn (X always goes first from let currentPlayerTurn = 'X') check if current turn is X switch it to O and vice versa + update player turn message + check if there is no winner/tie
+        if (winner === false && tie === false) {
+            if(currentPlayerTurn==='X') {
             //Assign current player to O
             currentPlayerTurn='O'
             //Update text of H2 Message to current player turn 
             playerTurnMessage.textContent = `It's ${currentPlayerTurn}'s turn`
-        } else {
+            } else {
             //Assign current player to X
             currentPlayerTurn='X'
             //Update text of H2 Message to current player turn 
             playerTurnMessage.textContent = `It's ${currentPlayerTurn}'s turn`
+            } 
         }
 
         //Invoke function - boardRender
         boardRender()
+
     })
 })
 
