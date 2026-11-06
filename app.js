@@ -1,12 +1,14 @@
-/*------------ Cached elements /*------------*/
+/*------------ Cached elements ------------*/
 //Cahcing board square elements using class name 
 const boardSqrElements = document.querySelectorAll('.sqr')
 //Cache player message turn using ID name 
 const playerTurnMessage = document.querySelector('#message')
+//Cache Reset button
+const resetBtn = document.querySelector('#reset')
 
 /*------------ Variables ------------*/
 //Board Array of 9 empty strings
-const board = ['', '', '', '', '', '', '', '', '']
+let board = ['', '', '', '', '', '', '', '', '']
 //Player turn starts as X
 let currentPlayerTurn = 'X'
 //Winner condition starts as false until there is a winner
@@ -20,6 +22,18 @@ const boardRender = () => {
     board.forEach((mark, index) => {
         boardSqrElements[index].textContent = mark
     })
+}
+
+///Function - Game Reset 
+const boardReset = () => {
+    
+    board = ['', '', '', '', '', '', '', '', '']
+    currentPlayerTurn = 'X'
+    winner = false 
+    tie = false 
+    boardRender()
+    //Update text of H2 Message to current player turn 
+    playerTurnMessage.textContent = `It's ${currentPlayerTurn}'s turn`
 }
 
 ///Function - Check for Winner based on board position combinations 
@@ -87,7 +101,7 @@ const checkTie = () => {
 playerTurnMessage.textContent = `It's ${currentPlayerTurn}'s turn`
 
 /*------------ Event Listeners ------------*/
-///Event Listener - Handle players clicks, update the board with X/O, track player turn/switch turns
+///Event Listener - Handle players clicks, update the board with X/O, track player turn/switch turns, check invalid moves, check win/tie game
 //Loop through the board square elements and current index number
 boardSqrElements.forEach((sqrElement, index) => {
 
@@ -106,12 +120,6 @@ boardSqrElements.forEach((sqrElement, index) => {
 
         //Check for a tie function 
         checkTie()
-        //If statment to check current player turn and update the boardSqrElements with value X or O
-        // if (currentPlayerTurn==='X') {
-        //     sqrElement.append('X')
-        // } else {
-        //     sqrElement.append('O')
-        // }
 
         //Switch Player turn (X always goes first from let currentPlayerTurn = 'X') check if current turn is X switch it to O and vice versa + update player turn message + check if there is no winner/tie
         if (winner === false && tie === false) {
@@ -130,7 +138,9 @@ boardSqrElements.forEach((sqrElement, index) => {
 
         //Invoke function - boardRender
         boardRender()
-
     })
 })
+
+///Event Listener - Reset Button 
+resetBtn.addEventListener('click', (boardReset))
 
