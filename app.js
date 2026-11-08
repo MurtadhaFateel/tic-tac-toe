@@ -111,7 +111,7 @@ boardSqrElements.forEach((sqrElement, index) => {
         if(board[index] !== '' || winner === true || tie === true) {
             return
         }
-
+        
         //Update the board array with the current player turn upon a click (X/O)
         board[index] = currentPlayerTurn
         
@@ -120,7 +120,7 @@ boardSqrElements.forEach((sqrElement, index) => {
 
         //Check for a tie function 
         checkTie()
-
+        
         //Switch Player turn (X always goes first from let currentPlayerTurn = 'X') check if current turn is X switch it to O and vice versa + update player turn message + check if there is no winner/tie
         if (winner === false && tie === false) {
             if(currentPlayerTurn==='X') {
