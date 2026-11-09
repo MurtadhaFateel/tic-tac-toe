@@ -5,11 +5,11 @@
 /*---------------------------- Variables (state) ----------------------------*/
 let currentPlayer = 'X'
 let isGameOver = false 
-// let isTie = false
 
 /*------------------------ Cached Element References ------------------------*/
 const messageEl = document.querySelector('#message')
-// const playerMarkEl = document.querySelectorAll('.sqr')
+const resetBtn = document.querySelector('#reset')
+
 const sqr0El = document.getElementById('0')
 const sqr1El = document.getElementById('1')
 const sqr2El = document.getElementById('2')
@@ -47,6 +47,22 @@ const checkTie = () => {
         isGameOver = true 
         return 
     }
+}
+//Board Reset Button
+const resetGame = () => {
+    sqr0El.textContent = ''
+    sqr1El.textContent = ''
+    sqr2El.textContent = ''
+    sqr3El.textContent = ''
+    sqr4El.textContent = ''
+    sqr5El.textContent = ''
+    sqr6El.textContent = ''
+    sqr7El.textContent = ''
+    sqr8El.textContent = ''
+
+    currentPlayer = 'X'
+    messageEl.textContent = `It's ${currentPlayer}'s turn`
+    isGameOver = false
 }
 
 /*----------------------------- Event Listeners -----------------------------*/
@@ -226,3 +242,6 @@ sqr8El.addEventListener('click', () => {
         }
     }
 })
+
+//Event Listener - Reset Button - call back function
+resetBtn.addEventListener('click', resetGame)
