@@ -4,6 +4,8 @@
 
 /*---------------------------- Variables (state) ----------------------------*/
 let currentPlayer = 'X'
+let isGameOver = false 
+// let isTie = false
 
 /*------------------------ Cached Element References ------------------------*/
 const playerTurnMessageEl = document.querySelector('#message')
@@ -21,41 +23,153 @@ const sqr8El = document.getElementById('8')
 /*-------------------------------- Functions --------------------------------*/
 playerTurnMessageEl.textContent = `It's ${currentPlayer}'s turn`
 
+const checkWinner = () => {
+    if (sqr0El.textContent === sqr1El.textContent && sqr1El.textContent === sqr2El.textContent)
+    {
+        playerTurnMessageEl.textContent = `${currentPlayer} Won!`
+        isGameOver = true
+        return
+    }
+} 
 
 /*----------------------------- Event Listeners -----------------------------*/
 ///Event Listener - Player Mark XO when player clicks
 sqr0El.addEventListener('click', () => {
-    sqr0El.textContent = currentPlayer
+    if (sqr0El.textContent !== '' || isGameOver === true) {
+        console.log('the square is not empty')
+        return
+    } else {
+        sqr0El.textContent = currentPlayer
+        checkWinner()
+        if(currentPlayer === 'X'){
+            currentPlayer = 'O'
+        } else {
+            currentPlayer = 'X'
+        }
+        if (isGameOver === false) {
+            playerTurnMessageEl.textContent = `It's ${currentPlayer}'s turn`
+        }
+    }
 })
 
 sqr1El.addEventListener('click', () => {
-    sqr1El.textContent = currentPlayer
+    if (sqr1El.textContent !== '' || isGameOver === true) {
+        console.log('the square is not empty')
+        return
+    } else {
+        sqr1El.textContent = currentPlayer
+        checkWinner()
+        if(currentPlayer === 'X'){
+            currentPlayer = 'O'
+        } else {
+            currentPlayer = 'X'
+        }
+        playerTurnMessageEl.textContent = `It's ${currentPlayer}'s turn`
+    }
 })
 
 sqr2El.addEventListener('click', () => {
-    sqr2El.textContent = currentPlayer
+    if (sqr2El.textContent !== '' || isGameOver === true) {
+        console.log('the square is not empty')
+        return
+    } else {
+        sqr2El.textContent = currentPlayer
+        checkWinner()
+        if(currentPlayer === 'X'){
+            currentPlayer = 'O'
+        } else {
+            currentPlayer = 'X'
+        }
+        playerTurnMessageEl.textContent = `It's ${currentPlayer}'s turn`
+    }
 })
 
 sqr3El.addEventListener('click', () => {
-    sqr3El.textContent = currentPlayer
+    if (sqr3El.textContent !== '' || isGameOver === true) {
+        console.log('the square is not empty')
+        return
+    } else {
+        sqr3El.textContent = currentPlayer
+        if(currentPlayer === 'X'){
+            currentPlayer = 'O'
+        } else {
+            currentPlayer = 'X'
+        }
+        playerTurnMessageEl.textContent = `It's ${currentPlayer}'s turn`
+    }
 })
 
 sqr4El.addEventListener('click', () => {
-    sqr4El.textContent = currentPlayer
+    if (sqr4El.textContent !== '' || isGameOver === true) {
+        console.log('the square is not empty')
+        return
+    } else {
+        sqr4El.textContent = currentPlayer
+        if(currentPlayer === 'X'){
+            currentPlayer = 'O'
+        } else {
+            currentPlayer = 'X'
+        }
+        playerTurnMessageEl.textContent = `It's ${currentPlayer}'s turn`
+    }
 })
 
 sqr5El.addEventListener('click', () => {
-    sqr5El.textContent = currentPlayer
+    if (sqr5El.textContent !== '' || isGameOver === true) {
+        console.log('the square is not empty')
+        return
+    } else {
+        sqr5El.textContent = currentPlayer
+        if(currentPlayer === 'X'){
+            currentPlayer = 'O'
+        } else {
+            currentPlayer = 'X'
+        }
+        playerTurnMessageEl.textContent = `It's ${currentPlayer}'s turn`
+    }
 })
 
 sqr6El.addEventListener('click', () => {
-    sqr6El.textContent = currentPlayer
+    if (sqr6El.textContent !== '' || isGameOver === true) {
+        console.log('the square is not empty')
+        return
+    } else {
+        sqr6El.textContent = currentPlayer
+        if(currentPlayer === 'X'){
+            currentPlayer = 'O'
+        } else {
+            currentPlayer = 'X'
+        }
+        playerTurnMessageEl.textContent = `It's ${currentPlayer}'s turn`
+    }
 })
 
 sqr7El.addEventListener('click', () => {
-    sqr7El.textContent = currentPlayer
+    if (sqr7El.textContent !== '' || isGameOver === true) {
+        console.log('the square is not empty')
+        return
+    } else {
+        sqr7El.textContent = currentPlayer
+        if(currentPlayer === 'X'){
+            currentPlayer = 'O'
+        } else {
+            currentPlayer = 'X'
+        }
+        playerTurnMessageEl.textContent = `It's ${currentPlayer}'s turn`
+    }
 })
 
 sqr8El.addEventListener('click', () => {
-    sqr8El.textContent = currentPlayer
+    if (sqr8El.textContent !== '' || isGameOver === true) {
+        console.log('the square is not empty')
+        return
+    } else {
+        sqr8El.textContent = currentPlayer
+        if(currentPlayer === 'X'){
+            currentPlayer = 'O'
+        } else {
+            currentPlayer = 'X'
+        }
+        playerTurnMessageEl.textContent = `It's ${currentPlayer}'s turn`
+    }
 })
