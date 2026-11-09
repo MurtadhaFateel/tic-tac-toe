@@ -8,7 +8,7 @@ let isGameOver = false
 // let isTie = false
 
 /*------------------------ Cached Element References ------------------------*/
-const playerTurnMessageEl = document.querySelector('#message')
+const messageEl = document.querySelector('#message')
 // const playerMarkEl = document.querySelectorAll('.sqr')
 const sqr0El = document.getElementById('0')
 const sqr1El = document.getElementById('1')
@@ -19,18 +19,35 @@ const sqr5El = document.getElementById('5')
 const sqr6El = document.getElementById('6')
 const sqr7El = document.getElementById('7')
 const sqr8El = document.getElementById('8')
-//clg to test 
-/*-------------------------------- Functions --------------------------------*/
-playerTurnMessageEl.textContent = `It's ${currentPlayer}'s turn`
 
+/*-------------------------------- Functions --------------------------------*/
+messageEl.textContent = `It's ${currentPlayer}'s turn`
+//Function - Check if player has won
 const checkWinner = () => {
-    if (sqr0El.textContent === sqr1El.textContent && sqr1El.textContent === sqr2El.textContent)
-    {
-        playerTurnMessageEl.textContent = `${currentPlayer} Won!`
+    if (
+        (sqr0El.textContent === currentPlayer && sqr1El.textContent === currentPlayer && sqr2El.textContent === currentPlayer) ||
+        (sqr3El.textContent === currentPlayer && sqr4El.textContent === currentPlayer && sqr5El.textContent === currentPlayer) ||
+        (sqr6El.textContent === currentPlayer && sqr7El.textContent === currentPlayer && sqr8El.textContent === currentPlayer) ||
+        (sqr0El.textContent === currentPlayer && sqr3El.textContent === currentPlayer && sqr6El.textContent === currentPlayer) ||
+        (sqr1El.textContent === currentPlayer && sqr4El.textContent === currentPlayer && sqr7El.textContent === currentPlayer) ||
+        (sqr2El.textContent === currentPlayer && sqr5El.textContent === currentPlayer && sqr8El.textContent === currentPlayer) ||
+        (sqr0El.textContent === currentPlayer && sqr4El.textContent === currentPlayer && sqr8El.textContent === currentPlayer) ||
+        (sqr2El.textContent === currentPlayer && sqr4El.textContent === currentPlayer && sqr6El.textContent === currentPlayer)
+    ) {
+        messageEl.textContent = `${currentPlayer} wins!`
         isGameOver = true
         return
     }
 } 
+
+//Function - check tie 
+const checkTie = () => {
+    if (sqr0El.textContent !== '' && sqr1El.textContent !== '' && sqr2El.textContent !== '' && sqr3El.textContent !== '' && sqr4El.textContent !== '' && sqr5El.textContent !== '' && sqr6El.textContent !== '' && sqr7El.textContent !== '' && sqr8El.textContent !== '') {
+        messageEl.textContent = 'Its a Tie'
+        isGameOver = true 
+        return 
+    }
+}
 
 /*----------------------------- Event Listeners -----------------------------*/
 ///Event Listener - Player Mark XO when player clicks
@@ -41,13 +58,15 @@ sqr0El.addEventListener('click', () => {
     } else {
         sqr0El.textContent = currentPlayer
         checkWinner()
+        checkTie()
         if(currentPlayer === 'X'){
             currentPlayer = 'O'
         } else {
             currentPlayer = 'X'
         }
+
         if (isGameOver === false) {
-            playerTurnMessageEl.textContent = `It's ${currentPlayer}'s turn`
+            messageEl.textContent = `It's ${currentPlayer}'s turn`
         }
     }
 })
@@ -59,12 +78,16 @@ sqr1El.addEventListener('click', () => {
     } else {
         sqr1El.textContent = currentPlayer
         checkWinner()
+        checkTie()
         if(currentPlayer === 'X'){
             currentPlayer = 'O'
         } else {
             currentPlayer = 'X'
         }
-        playerTurnMessageEl.textContent = `It's ${currentPlayer}'s turn`
+
+        if (isGameOver === false) {
+            messageEl.textContent = `It's ${currentPlayer}'s turn`
+        }
     }
 })
 
@@ -75,12 +98,16 @@ sqr2El.addEventListener('click', () => {
     } else {
         sqr2El.textContent = currentPlayer
         checkWinner()
+        checkTie()
         if(currentPlayer === 'X'){
             currentPlayer = 'O'
         } else {
             currentPlayer = 'X'
         }
-        playerTurnMessageEl.textContent = `It's ${currentPlayer}'s turn`
+        
+        if (isGameOver === false) {
+            messageEl.textContent = `It's ${currentPlayer}'s turn`
+        }
     }
 })
 
@@ -90,12 +117,17 @@ sqr3El.addEventListener('click', () => {
         return
     } else {
         sqr3El.textContent = currentPlayer
+        checkWinner()
+        checkTie()
         if(currentPlayer === 'X'){
             currentPlayer = 'O'
         } else {
             currentPlayer = 'X'
         }
-        playerTurnMessageEl.textContent = `It's ${currentPlayer}'s turn`
+        
+        if (isGameOver === false) {
+            messageEl.textContent = `It's ${currentPlayer}'s turn`
+        }
     }
 })
 
@@ -105,12 +137,17 @@ sqr4El.addEventListener('click', () => {
         return
     } else {
         sqr4El.textContent = currentPlayer
+        checkWinner()
+        checkTie()
         if(currentPlayer === 'X'){
             currentPlayer = 'O'
         } else {
             currentPlayer = 'X'
         }
-        playerTurnMessageEl.textContent = `It's ${currentPlayer}'s turn`
+        
+        if (isGameOver === false) {
+            messageEl.textContent = `It's ${currentPlayer}'s turn`
+        }
     }
 })
 
@@ -120,12 +157,16 @@ sqr5El.addEventListener('click', () => {
         return
     } else {
         sqr5El.textContent = currentPlayer
+        checkWinner()
+        checkTie()
         if(currentPlayer === 'X'){
             currentPlayer = 'O'
         } else {
             currentPlayer = 'X'
         }
-        playerTurnMessageEl.textContent = `It's ${currentPlayer}'s turn`
+        if (isGameOver === false) {
+            messageEl.textContent = `It's ${currentPlayer}'s turn`
+        }
     }
 })
 
@@ -135,12 +176,16 @@ sqr6El.addEventListener('click', () => {
         return
     } else {
         sqr6El.textContent = currentPlayer
+        checkWinner()
+        checkTie()
         if(currentPlayer === 'X'){
             currentPlayer = 'O'
         } else {
             currentPlayer = 'X'
         }
-        playerTurnMessageEl.textContent = `It's ${currentPlayer}'s turn`
+        if (isGameOver === false) {
+            messageEl.textContent = `It's ${currentPlayer}'s turn`
+        }
     }
 })
 
@@ -150,12 +195,16 @@ sqr7El.addEventListener('click', () => {
         return
     } else {
         sqr7El.textContent = currentPlayer
+        checkWinner()
+        checkTie()
         if(currentPlayer === 'X'){
             currentPlayer = 'O'
         } else {
             currentPlayer = 'X'
         }
-        playerTurnMessageEl.textContent = `It's ${currentPlayer}'s turn`
+        if (isGameOver === false) {
+            messageEl.textContent = `It's ${currentPlayer}'s turn`
+        }
     }
 })
 
@@ -165,11 +214,15 @@ sqr8El.addEventListener('click', () => {
         return
     } else {
         sqr8El.textContent = currentPlayer
+        checkWinner()
+        checkTie()
         if(currentPlayer === 'X'){
             currentPlayer = 'O'
         } else {
             currentPlayer = 'X'
         }
-        playerTurnMessageEl.textContent = `It's ${currentPlayer}'s turn`
+        if (isGameOver === false) {
+            messageEl.textContent = `It's ${currentPlayer}'s turn`
+        }
     }
 })
