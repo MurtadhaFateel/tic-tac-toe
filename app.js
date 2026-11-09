@@ -48,6 +48,7 @@ const checkTie = () => {
         return 
     }
 }
+
 //Board Reset Button
 const resetGame = () => {
     sqr0El.textContent = ''
